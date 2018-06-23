@@ -6,17 +6,16 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:46:15 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 16:42:37 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 16:53:39 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.hpp"
-<<<<<<< HEAD
+
 #include <iostream>
 
-=======
 #include "EnemyAsteroid.hpp"
->>>>>>> 9d41f45253642796e620714d5dcbf6a8bd36fa6f
+
 Game::Game(){}
 
 Game::Game(Game const &src){
@@ -43,9 +42,7 @@ void	Game::start(){
 	init();
 	while(!done)
 	{
-	
 		getmaxyx(playwin, this->yMax, this->xMax);
-<<<<<<< HEAD
 		this->t1 = clock() / (CLOCKS_PER_SEC / FPS);
 		if (this->t1 > this->t2)
 		{
@@ -54,19 +51,10 @@ void	Game::start(){
 			wclear(playwin);
 			player->display();
 			box(playwin, 0, 0);
+			EnemyAsteroid *enemy = new EnemyAsteroid(this->playwin);
+			enemy->display();
 			refresh();
 		}
-=======
-		player->display();
-		wrefresh(playwin);
-		player->getmv(yMax, xMax);
-		wclear(playwin);
-		box(playwin, 0, 0);
-		// refresh();
-		EnemyAsteroid *enemy = new EnemyAsteroid(this->playwin);
-		enemy->display();
-
->>>>>>> 9d41f45253642796e620714d5dcbf6a8bd36fa6f
 	}
 
 	endwin();
