@@ -69,18 +69,19 @@ void Game::check_col() {
                     }
                 }
             }
+            if ((player->getX() == enemyAsteroid[j]->getX()) && (player->getY() == enemyAsteroid[j]->getY())) {
+                done = true;
+                while (1) {
+                    wclear(playwin);
+                    box(playwin, 0, 0);
+                    mvwprintw(playwin, 1, 1, "you lose");
+                    wrefresh(playwin);
+                }
+            }
         }
     }
 
-    if ((player->getX() == enemyAsteroid[0]->getX()) && (player->getY() == enemyAsteroid[0]->getY())) {
-        done = true;
-        while (1) {
-            wclear(playwin);
-            box(playwin, 0, 0);
-            mvwprintw(playwin, 1, 1, "you lose");
-            wrefresh(playwin);
-        }
-    }
+
 }
 
 void Game::moveall() {
