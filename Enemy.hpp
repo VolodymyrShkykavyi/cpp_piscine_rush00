@@ -7,8 +7,8 @@ class Enemy
 {
 protected:
 	int	_size;
-	int	_xLoc, _yLoc;
-	int	_speed;
+	float	_xLoc, _yLoc;
+	float	_speed;
     char _icon;
     WINDOW * _win;
 
@@ -22,6 +22,7 @@ public:
 	int	    getX();
 	int     getY();
     void    setStartPos();
+    void	move();
 };
 
 #endif

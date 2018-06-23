@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:39 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 16:34:56 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 17:16:09 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,14 @@ int Player::getmv(int y, int x){
 
 void Player::display(){
 	mvwaddch(curwin_, yLoc_, xLoc_, player_);
+}
+
+int		Player::getX()
+{
+	return this->xLoc_;
+}
+
+int		Player::getY()
+{
+	return this->yLoc_;
 }

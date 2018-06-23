@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:41:37 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 16:43:46 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 17:17:18 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <ncurses.h>
 # include <sys/time.h>
 # include "Player.hpp"
+# include "EnemyAsteroid.hpp"
 # define FPS 60
 
 class Game
@@ -24,6 +25,7 @@ class Game
 	int yMax, xMax;
 	WINDOW * playwin;
 	Player *player;
+	EnemyAsteroid *enemy;
 	bool done;
 	clock_t t1;
 	clock_t t2;
@@ -33,6 +35,7 @@ public:
 	~Game();
 	void	init();	
 	void	start();
+	void	check_col();
 };
 
 #endif

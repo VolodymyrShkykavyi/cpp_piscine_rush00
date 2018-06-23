@@ -28,3 +28,8 @@ void    Enemy::display()
 {
     mvwaddch(this->_win, this->_yLoc, this->_xLoc, this->_icon);
 }
+
+void	Enemy::move()
+{
+	this->_xLoc -= this->_speed;
+}
