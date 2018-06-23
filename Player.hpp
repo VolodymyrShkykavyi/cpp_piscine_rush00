@@ -15,18 +15,21 @@
 
 #include <ncurses.h>
 #include <sys/time.h>
-
+#include "Shoot.hpp"
 class Player
 {
 	int xLoc_, yLoc_, xMax_, yMax_;
 	char player_;
 	WINDOW *curwin_;
+    Shoot * _shoots[100];
+
 public:
 	Player();
 	Player(WINDOW *win, int y, int x, char c);
 	Player(Player const &src);
 	~Player();
-	int	    getX();
+
+    int	    getX();
 	int     getY();
 	void mvup();
 	void mvdown();
@@ -34,6 +37,9 @@ public:
 	void mvright();
 	int getmv(int y, int x);
 	void display();
+    void    shoot();
+    Shoot ** getShoots();
+
 };
 
 #endif

@@ -7,9 +7,10 @@ class Shoot
 {
 private:
     int _direction;
-    int _speed;
+    float _speed;
     float   _xLoc, _yLoc;
     WINDOW  * _win;
+    bool    _alive;
 
 public:
     Shoot(WINDOW *win, int y, int x, int direction = -1);
@@ -17,6 +18,10 @@ public:
     void    display();
     int	    getX();
     int     getY();
+    void	setX(int pos);
+    void    setY(int pos);
+    bool    getAlive();
+    bool    setAlive(bool value);
 };
 
 #endif

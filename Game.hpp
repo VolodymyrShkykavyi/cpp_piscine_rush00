@@ -16,8 +16,12 @@
 # include <ctime>
 # include <ncurses.h>
 # include <sys/time.h>
+#include <iostream>
+#include <stdlib.h>
 # include "Player.hpp"
 # include "EnemyAsteroid.hpp"
+#include "Shoot.hpp"
+
 # define FPS 60
 
 class Game
@@ -26,6 +30,7 @@ class Game
 	WINDOW * playwin;
 	Player *player;
 	EnemyAsteroid  *enemy[50];
+	Shoot		**playerShoots;
 	bool done;
 	clock_t t1;
 	clock_t t2;

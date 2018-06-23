@@ -12,10 +12,7 @@
 
 #include "Game.hpp"
 
-#include <iostream>
 
-#include "EnemyAsteroid.hpp"
-#include <stdlib.h>
 
 Game::Game(){}
 
@@ -41,6 +38,7 @@ void	Game::init(){
 	keypad(playwin, true);
 	nodelay(playwin, true);
 	player = new Player(playwin, 1, 1, '>');
+	this->playerShoots = player->getShoots();
 	for (int i = 0; i < 50; i++)
 	{
 		enemy[i] = new EnemyAsteroid(this->playwin);
@@ -78,19 +76,24 @@ if ((player->getX() == enemy[0]->getX()) && (player->getY() == enemy[0]->getY())
 }
 
 void	Game::moveall(){
-	for (int i = 0; i < 50; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		if (enemy[i]->getAlive() == true){
-			enemy[i]->move();
-			enemy[i]->display();
+		if (i < 50) {
+			if (enemy[i]->getAlive() == true) {
+				enemy[i]->move();
+				enemy[i]->display();
+			}
+			if (enemy[i]->getX() < 1)
+				enemy[i]->setStartPos();
 		}
-		if (enemy[i]->getX() < 1)
-			enemy[i]->setStartPos();
+		this->playerShoots[i]->move();
+		this->playerShoots[i]->display();
 	}
 }
 
 void	Game::start(){
 	init();
+	//Shoot **shoot = player->getShoots();
 	while(!done)
 	{
 		getmaxyx(playwin, this->yMax, this->xMax);
@@ -104,6 +107,8 @@ void	Game::start(){
 			box(playwin, 0, 0);
 			add_ass();
 			moveall();
+			//(*shoot)[0].display();
+			//(*shoot)[0].move();
 			check_col();
 			refresh();
 		}

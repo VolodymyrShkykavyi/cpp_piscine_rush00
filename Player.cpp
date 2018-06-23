@@ -24,13 +24,19 @@ Player::Player(WINDOW *win, int y, int x, char c){
 	getmaxyx(curwin_, yMax_, xMax_);
 	keypad(curwin_, true);
 	player_ = c;
+
+    for (int i; i < 100; i++) {
+        this->_shoots[i] = new Shoot(this->curwin_, this->yLoc_, this->xLoc_, 1);
+    }
 }
 
 Player::Player(Player const &src){
 	*this = src;
 }
 
-Player::~Player(){}
+Player::~Player(){
+   // delete [] this->_shoots;
+}
 
 void Player::mvup(){
 	mvwaddch(curwin_, yLoc_, xLoc_, ' ');
@@ -60,6 +66,18 @@ void Player::mvright(){
 		xLoc_ = xMax_-2;
 }
 
+void    Player::shoot()
+{
+    for (int i = 0; i < 100; ++i) {
+        if (this->_shoots[i]->getAlive() == false) {
+            this->_shoots[i]->setAlive(true);
+            this->_shoots[i]->setX(this->xLoc_);
+            this->_shoots[i]->setY(this->yLoc_);
+            break;
+        }
+    }
+}
+
 int Player::getmv(int y, int x){
 	int choice = wgetch(curwin_);
 	this->yMax_ = y;
@@ -78,6 +96,9 @@ int Player::getmv(int y, int x){
 		case KEY_RIGHT:
 			mvright();
 			break;
+        case ' ':
+            this->shoot();
+            break;
 		default:
 			break;
 	}
@@ -96,4 +117,9 @@ int		Player::getX()
 int		Player::getY()
 {
 	return this->yLoc_;
+}
+
+Shoot ** Player::getShoots()
+{
+    return &this->_shoots[0];
 }
