@@ -29,7 +29,7 @@ class Game
 	int yMax, xMax;
 	WINDOW * playwin;
 	Player *player;
-	EnemyAsteroid  *enemy[50];
+	EnemyAsteroid  *enemyAsteroid[50];
 	Shoot		**playerShoots;
 	bool done;
 	clock_t t1;

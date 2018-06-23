@@ -38,7 +38,7 @@ void Game::init() {
     player = new Player(playwin, 1, 1, '>');
     this->playerShoots = player->getShoots();
     for (int i = 0; i < 50; i++) {
-        enemy[i] = new EnemyAsteroid(this->playwin);
+        enemyAsteroid[i] = new EnemyAsteroid(this->playwin);
     }
     done = false;
     this->t2 = clock() / (CLOCKS_PER_SEC / FPS);
@@ -47,9 +47,9 @@ void Game::init() {
 void Game::add_ass() {
     for (int i = 0; i < 50; i++) {
         if (clock() % 200 == 0) {
-            if (enemy[i]->getAlive() == false) {
-                enemy[i]->setStartPos();
-                enemy[i]->setAlive(true);
+            if (enemyAsteroid[i]->getAlive() == false) {
+                enemyAsteroid[i]->setStartPos();
+                enemyAsteroid[i]->setAlive(true);
             }
         }
     }
@@ -58,21 +58,21 @@ void Game::add_ass() {
 void Game::check_col() {
 
     for (int j = 0; j < 50; j++) {
-        if (enemy[j]->getAlive()) {
+        if (enemyAsteroid[j]->getAlive()) {
             for (int i = 0; i < 100; i++) {
                 if (playerShoots[i]->getAlive()) {
-                    if (playerShoots[i]->getX() >= enemy[j]->getX() &&
-                        playerShoots[i]->getX() <= enemy[j]->getX() + enemy[j]->getSpeed() + 1 &&
-                        playerShoots[i]->getY() == enemy[j]->getY()) {
+                    if (playerShoots[i]->getX() >= enemyAsteroid[j]->getX() &&
+                        playerShoots[i]->getX() <= enemyAsteroid[j]->getX() + enemyAsteroid[j]->getSpeed() + 1 &&
+                        playerShoots[i]->getY() == enemyAsteroid[j]->getY()) {
                         playerShoots[i]->setAlive(false);
-                        enemy[j]->setAlive(false);
+                        enemyAsteroid[j]->setAlive(false);
                     }
                 }
             }
         }
     }
 
-    if ((player->getX() == enemy[0]->getX()) && (player->getY() == enemy[0]->getY())) {
+    if ((player->getX() == enemyAsteroid[0]->getX()) && (player->getY() == enemyAsteroid[0]->getY())) {
         done = true;
         while (1) {
             wclear(playwin);
@@ -86,12 +86,12 @@ void Game::check_col() {
 void Game::moveall() {
     for (int i = 0; i < 100; i++) {
         if (i < 50) {
-            if (enemy[i]->getAlive() == true) {
-                enemy[i]->move();
-                enemy[i]->display();
+            if (enemyAsteroid[i]->getAlive() == true) {
+                enemyAsteroid[i]->move();
+                enemyAsteroid[i]->display();
             }
-            if (enemy[i]->getX() < 1)
-                enemy[i]->setStartPos();
+            if (enemyAsteroid[i]->getX() < 1)
+                enemyAsteroid[i]->setStartPos();
         }
         this->playerShoots[i]->move();
         this->playerShoots[i]->display();
