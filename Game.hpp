@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:41:37 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 13:54:50 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 14:13:33 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <ctime>
 # include <ncurses.h>
 # include <sys/time.h>
+# include "Player.hpp"
 
 class Game
 {
@@ -27,6 +28,7 @@ public:
 	Game(Game const &src);
 	~Game();
 	void	init();	
+	void	start();
 };
 
 #endif

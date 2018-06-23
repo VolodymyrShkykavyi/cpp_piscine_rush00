@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:39 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 13:54:28 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 14:25:41 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ void Player::mvright(){
 		xLoc_ = xMax_-2;
 }
 
-int Player::getmv(){
+int Player::getmv(int y, int x){
 	int choice = wgetch(curwin_);
+	this->yMax_ = y;
+	this->xMax_ = x;
 	switch(choice)
 	{
 		case KEY_UP:
