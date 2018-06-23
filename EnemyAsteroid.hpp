@@ -5,7 +5,9 @@
 # include <cstdlib>
 
 class   EnemyAsteroid: public Enemy
-{   
+{ 
+protected:
+	char _iconsArr[3];
 public:
     EnemyAsteroid(WINDOW *win);
     //EnemyAsteroid(WINDOW *win, int size);

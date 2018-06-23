@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:39 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 17:16:09 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 20:57:08 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ Player::Player(WINDOW *win, int y, int x, char c){
 	curwin_ = win;
 	yLoc_ = y;
 	xLoc_ = x;
+	_lives = 3;
+	_immortal = false;
 	getmaxyx(curwin_, yMax_, xMax_);
 	keypad(curwin_, true);
 	player_ = c;
@@ -106,7 +108,16 @@ int Player::getmv(int y, int x){
 }
 
 void Player::display(){
-	mvwaddch(curwin_, yLoc_, xLoc_, player_);
+	if (this->getImmortal() == true){
+		wattron(curwin_, COLOR_PAIR(3));
+		mvwaddch(curwin_, yLoc_, xLoc_, player_);
+		wattroff(curwin_, COLOR_PAIR(3));
+	}
+	else{
+		wattron(curwin_, COLOR_PAIR(1));
+		mvwaddch(curwin_, yLoc_, xLoc_, player_);
+		wattroff(curwin_, COLOR_PAIR(1));
+	}
 }
 
 int		Player::getX()
@@ -122,4 +133,21 @@ int		Player::getY()
 Shoot ** Player::getShoots()
 {
     return &this->_shoots[0];
+}
+
+bool Player::getImmortal(){
+	return this->_immortal;
+}
+
+void Player::setImmortal(bool val){
+	this->_immortal = val;
+}
+
+int	Player::getLives()
+{
+	return this->_lives;
+}
+
+void	Player::removeLive(){
+	this->_lives--;
 }

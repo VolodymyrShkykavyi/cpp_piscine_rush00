@@ -22,7 +22,7 @@ public:
     void	setX(int pos);
     void    setY(int pos);
     bool    getAlive();
-    bool    setAlive(bool value);
+    void    setAlive(bool value);
 };
 
 #endif

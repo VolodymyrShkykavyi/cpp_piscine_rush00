@@ -24,8 +24,11 @@ void Shoot::move()
 
 void    Shoot::display()
 {
-    if (this->_alive)
+    if (this->_alive){
+        wattron(this->_win, COLOR_PAIR(2));
         mvwaddch(this->_win, this->_yLoc, this->_xLoc, '-');
+        wattroff(this->_win, COLOR_PAIR(2));
+    }
 }
 
 int		Shoot::getX()
@@ -43,7 +46,7 @@ bool    Shoot::getAlive()
     return this->_alive;
 }
 
-bool    Shoot::setAlive(bool value)
+void    Shoot::setAlive(bool value)
 {
     this->_alive = value;
 }

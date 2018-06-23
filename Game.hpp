@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:41:37 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 18:10:23 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 21:36:25 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <cmath>
 # include <ctime>
 # include <ncurses.h>
+# include <curses.h>
 # include <sys/time.h>
 #include <iostream>
 #include <stdlib.h>
@@ -34,6 +35,8 @@ class Game
 	bool done;
 	clock_t t1;
 	clock_t t2;
+	int time;
+	int points;
 public:
 	Game();
 	Game(Game const &src);
