@@ -9,6 +9,7 @@ private:
     int _direction;
     float _speed;
     float   _xLoc, _yLoc;
+    int     _maxX, _maxY;
     WINDOW  * _win;
     bool    _alive;
 

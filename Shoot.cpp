@@ -8,12 +8,18 @@ Shoot::Shoot(WINDOW *win, int y, int x, int direction)
     this->_xLoc = x + direction;
     this->_yLoc = y + direction;
     this->_alive = false;
+
+    getmaxyx(this->_win, this->_maxY, this->_maxX);
 }
 
 void Shoot::move()
 {
-    if (this->_alive)
+    if (this->_alive) {
         this->_xLoc += this->_direction * this->_speed;
+        if (this->_xLoc >= this->_maxX){
+            this->setAlive(false);
+        }
+    }
 }
 
 void    Shoot::display()

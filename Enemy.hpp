@@ -9,7 +9,7 @@ protected:
 	int	_size;
 	float	_xLoc, _yLoc;
 	float	_speed;
-    char _icon;
+    char    _icon;
     WINDOW * _win;
     bool 	_alive;
 public:
