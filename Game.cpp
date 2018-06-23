@@ -60,10 +60,11 @@ void Game::init() {
 
 void Game::add_ass() {
     for (int i = 0; i < 50; i++) {
-        if (clock() % 200 == 0) {
+        if (this->time % 100 == 0) {
             if (enemyAsteroid[i]->getAlive() == false) {
                 enemyAsteroid[i]->setStartPos();
                 enemyAsteroid[i]->setAlive(true);
+                return ;
             }
         }
     }
