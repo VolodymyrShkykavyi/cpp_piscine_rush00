@@ -11,8 +11,12 @@
 /* ************************************************************************** */
 
 #include "Game.hpp"
+<<<<<<< HEAD
 #include <iostream>
 
+=======
+#include "EnemyAsteroid.hpp"
+>>>>>>> 9d41f45253642796e620714d5dcbf6a8bd36fa6f
 Game::Game(){}
 
 Game::Game(Game const &src){
@@ -41,6 +45,7 @@ void	Game::start(){
 	{
 	
 		getmaxyx(playwin, this->yMax, this->xMax);
+<<<<<<< HEAD
 		this->t1 = clock() / (CLOCKS_PER_SEC / FPS);
 		if (this->t1 > this->t2)
 		{
@@ -51,6 +56,17 @@ void	Game::start(){
 			box(playwin, 0, 0);
 			refresh();
 		}
+=======
+		player->display();
+		wrefresh(playwin);
+		player->getmv(yMax, xMax);
+		wclear(playwin);
+		box(playwin, 0, 0);
+		// refresh();
+		EnemyAsteroid *enemy = new EnemyAsteroid(this->playwin);
+		enemy->display();
+
+>>>>>>> 9d41f45253642796e620714d5dcbf6a8bd36fa6f
 	}
 
 	endwin();
