@@ -12,12 +12,12 @@ $(NAME): #$(OBJ_DIR) $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(INCLUDES)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
-#$(OBJ_DIR)/%.o: %.cpp
-%.o: %.cpp
+$(OBJ_DIR)/%.o: %.cpp
+#%.o: %.cpp
 	$(CC) $(FLAGS) -o $@ -c $<
 clean:
-	rm -f $(OBJ)
-	rmdir -p $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)
+#	rmdir -p $(OBJ_DIR)
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
