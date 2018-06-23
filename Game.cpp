@@ -6,11 +6,12 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:46:15 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 14:39:22 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 16:42:37 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.hpp"
+#include <iostream>
 
 Game::Game(){}
 
@@ -27,22 +28,30 @@ void	Game::init(){
 	curs_set(0);
 	getmaxyx(stdscr, this->yMax, this->xMax);
 	this->playwin = newwin(0, 0, 0, 0);
-	wrefresh(playwin);
+	keypad(playwin, true);
+	nodelay(playwin, true);
 	player = new Player(playwin, 1, 1, '>');
 	done = false;
+	this->t2 = clock() / (CLOCKS_PER_SEC / FPS);
 }
 
 void	Game::start(){
 	init();
 	while(!done)
 	{
+	
 		getmaxyx(playwin, this->yMax, this->xMax);
-		player->display();
-		wrefresh(playwin);
-		player->getmv(yMax, xMax);
-		wclear(playwin);
-		box(playwin, 0, 0);
-		// refresh();
+		this->t1 = clock() / (CLOCKS_PER_SEC / FPS);
+		if (this->t1 > this->t2)
+		{
+			this->t2 = clock() / (CLOCKS_PER_SEC / FPS);
+			player->getmv(yMax, xMax);
+			wclear(playwin);
+			player->display();
+			box(playwin, 0, 0);
+			refresh();
+		}
 	}
+
 	endwin();
 }

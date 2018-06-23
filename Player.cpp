@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:39 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 14:25:41 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 16:34:56 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void Player::mvdown(){
 	mvwaddch(curwin_, yLoc_, xLoc_, ' ');
 	yLoc_++;
 	if (yLoc_ > yMax_-2)
-		yLoc_ = yMax_-2; 
+		yLoc_ = yMax_-2;
 }
 
 void Player::mvleft(){
