@@ -23,3 +23,8 @@ int		Enemy::getY()
 {
 	return this->_yLoc;
 }
+
+void    Enemy::display()
+{
+    mvwaddch(this->_win, this->_yLoc, this->_xLoc, this->_icon);
+}

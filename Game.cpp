@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "Game.hpp"
-
+#include "EnemyAsteroid.hpp"
 Game::Game(){}
 
 Game::Game(Game const &src){
@@ -43,6 +43,9 @@ void	Game::start(){
 		wclear(playwin);
 		box(playwin, 0, 0);
 		// refresh();
+		EnemyAsteroid *enemy = new EnemyAsteroid(this->playwin);
+		enemy->display();
+
 	}
 	endwin();
 }
