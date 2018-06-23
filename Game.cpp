@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2050/06/23 13:46:15 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 18:10:29 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 18:20:50 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	Game::moveall(){
 			enemy[i]->move();
 			enemy[i]->display();
 		}
+		if (enemy[i]->getX() < 1)
+			enemy[i]->setStartPos();
 	}
 }
 
