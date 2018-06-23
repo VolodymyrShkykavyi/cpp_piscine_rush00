@@ -1,12 +1,13 @@
 NAME = ft_retro
 SRC = *.cpp
 OBJ = $(SRC:.cpp=.o)
-FLAGS = -Wall -Werror -Wextra
 CC = clang++
+FLAGS = -Wall -Werror -Wextra
+INCLUDES = -lncurses
 
 all: $(NAME)
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(INCLUDES)
 %.o: %.cpp
 	$(CC) $(FLAGS) -o $@ -c $<
 clean:
