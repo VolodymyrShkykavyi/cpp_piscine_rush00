@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:46:15 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 14:26:17 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 14:39:22 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,20 @@ void	Game::init(){
 	this->playwin = newwin(0, 0, 0, 0);
 	wrefresh(playwin);
 	player = new Player(playwin, 1, 1, '>');
+	done = false;
 }
 
 void	Game::start(){
 	init();
-	while(player->getmv(yMax, xMax) != 'x')
+	while(!done)
 	{
 		getmaxyx(playwin, this->yMax, this->xMax);
 		player->display();
 		wrefresh(playwin);
+		player->getmv(yMax, xMax);
+		wclear(playwin);
 		box(playwin, 0, 0);
-		refresh();
+		// refresh();
 	}
 	endwin();
 }

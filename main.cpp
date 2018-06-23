@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 21:19:13 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 14:13:55 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 14:30:18 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "Game.hpp"
+#include "Player.hpp"
 
 int	main(){
 	Game g;
