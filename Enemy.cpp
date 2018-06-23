@@ -33,3 +33,13 @@ void	Enemy::move()
 {
 	this->_xLoc -= this->_speed;
 }
+
+bool	Enemy::getAlive()
+{
+	return this->_alive;
+}
+
+void	Enemy::setAlive(bool is)
+{
+	this->_alive = is;
+}

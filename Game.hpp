@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:41:37 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 17:17:18 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/23 18:10:23 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Game
 	int yMax, xMax;
 	WINDOW * playwin;
 	Player *player;
-	EnemyAsteroid *enemy;
+	EnemyAsteroid  *enemy[50];
 	bool done;
 	clock_t t1;
 	clock_t t2;
@@ -36,6 +36,8 @@ public:
 	void	init();	
 	void	start();
 	void	check_col();
+	void	add_ass();
+	void	moveall();
 };
 
 #endif

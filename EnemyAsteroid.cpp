@@ -6,7 +6,7 @@ EnemyAsteroid::EnemyAsteroid(WINDOW *win)
     this->_size = 1;
     this->_speed = 0.1;
     this->_icon = '*';
-
+    this->_alive = false;
     this->setStartPos();
 }
 

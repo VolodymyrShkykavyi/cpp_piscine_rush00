@@ -5,13 +5,12 @@
 # include <cstdlib>
 
 class   EnemyAsteroid: public Enemy
-{
-protected:
-    void    setStartPos();
+{   
 public:
     EnemyAsteroid(WINDOW *win);
     //EnemyAsteroid(WINDOW *win, int size);
     ~EnemyAsteroid();
+    void    setStartPos();
 };
 
 #endif
