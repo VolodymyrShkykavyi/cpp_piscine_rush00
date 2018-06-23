@@ -93,7 +93,6 @@ void	Game::moveall(){
 
 void	Game::start(){
 	init();
-	//Shoot **shoot = player->getShoots();
 	while(!done)
 	{
 		getmaxyx(playwin, this->yMax, this->xMax);
@@ -107,8 +106,6 @@ void	Game::start(){
 			box(playwin, 0, 0);
 			add_ass();
 			moveall();
-			//(*shoot)[0].display();
-			//(*shoot)[0].move();
 			check_col();
 			refresh();
 		}
