@@ -56,6 +56,7 @@ public:
 	void	moveall();
 	std::string	getTime();
 	void	printLives();
+	void	showEndGame();
 };
 
 #endif

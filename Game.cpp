@@ -50,7 +50,7 @@ void Game::init() {
 	}
 	this->playwin = newwin(0, 0, 0, 0);
 	nodelay(playwin, true);
-	player = new Player(playwin, 1, 1);
+	player = new Player(playwin, this->yMax / 2, 1);
 	this->playerShoots = player->getShoots();
 	for (int i = 0; i < 50; i++) {
 		this->enemyShoots[i] = new Shoot(this->playwin, 0, 0, -1);
@@ -179,35 +179,37 @@ void Game::check_col() {
 				player->removeLive();
 				immortal_time = 180;
 				player->setImmortal(true);
-				if (player->getLives() < 1) {
-					done = true;
-					while (1) {
-						int ex = wgetch(playwin);
-						if (ex == 27) {
-							endwin();
-							exit(0);
-						}
-//						wclear(playwin);
-						attron(COLOR_PAIR(1));
-						mvprintw(this->yMax / 2, this->xMax / 2 - 1, "*GAME OVER*");
-						attroff(COLOR_PAIR(1));
-						refresh();
-					}
-				}
+				if (player->getLives() < 1)
+					this->showEndGame();
 			}
 	}
 	//boss collision
 	if (this->enemyBoss->getAlive()) {
-
-
 		if (player->getImmortal() == false &&
 			this->enemyBoss->checkPlayerCollision(this->player->getY(), this->player->getX())) {
 			player->removeLive();
 			immortal_time = 180;
 			player->setImmortal(true);
+			if (player->getLives() < 1)
+				this->showEndGame();
 		}
 	}
 
+}
+
+void	Game::showEndGame() {
+		done = true;
+		while (1) {
+			int ex = wgetch(playwin);
+			if (ex == 27) {
+				endwin();
+				exit(0);
+			}
+			attron(COLOR_PAIR(1));
+			mvprintw(this->yMax / 2, this->xMax / 2 - 1, "*GAME OVER*");
+			attroff(COLOR_PAIR(1));
+			refresh();
+		}
 }
 
 void Game::moveall() {
@@ -255,6 +257,7 @@ void Game::moveall() {
 void Game::start() {
 	init();
 
+	enemyBoss->setAlive(true);
 	while (!done) {
 		getmaxyx(playwin, this->yMax, this->xMax);
 		this->t1 = clock() / (CLOCKS_PER_SEC / FPS);
