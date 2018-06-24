@@ -74,14 +74,14 @@ void EnemyBoss::shoot() {
 void EnemyBoss::display() {
 	if (this->getAlive()) {
 
-		mvwaddstr(this->_win, this->_yLoc - 2, this->_xLoc, "<");
+		mvwaddstr(this->_win, this->_yLoc - 2, this->_xLoc, "⟸");
 		mvwaddstr(this->_win, this->_yLoc - 1, this->_xLoc, "◢");
 		mvwaddstr(this->_win, this->_yLoc - 1, this->_xLoc + 1, "◼");
 		mvwaddstr(this->_win, this->_yLoc, this->_xLoc - 1, "👽");
 		mvwaddstr(this->_win, this->_yLoc, this->_xLoc + 1, "🕸");
 		mvwaddstr(this->_win, this->_yLoc + 1, this->_xLoc + 1, "◼");
 		mvwaddstr(this->_win, this->_yLoc + 1, this->_xLoc, "◥");
-		mvwaddstr(this->_win, this->_yLoc + 2, this->_xLoc, "<");
+		mvwaddstr(this->_win, this->_yLoc + 2, this->_xLoc, "⟸");
 	}
 }
 
