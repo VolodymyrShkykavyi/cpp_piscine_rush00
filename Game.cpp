@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2050/06/23 13:46:15 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 15:41:35 by bpodlesn         ###   ########.fr       */
+/*   Created: 2050/06/23 13:46:50 by bpodlesn          #+#    #+#             */
+/*   Updated: 2018/06/24 16:20:20 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void Game::init() {
     nodelay(playwin, true);
     player = new Player(playwin, 1, 1, '>');
     this->playerShoots = player->getShoots();
-    for (int i; i < 50; i++) {
+    for (int i = 0; i < 50; i++) {
         this->enemyShoots[i] = new Shoot(this->playwin, 0, 0, -1);
     }
-    for (int i; i < 15; i++){
-        this->enemyShip[i] = new EnemyShip(this->playwin);//, &this->enemyShoots[0]);
+    for (int i = 0; i < 50; i++){
+        this->enemyShip[i] = new EnemyShip(this->playwin, &this->enemyShoots[0]);
         // this->enemyShip[i]->setAlive(true);
     }
     for (int i = 0; i < 50; i++) {
@@ -70,22 +70,26 @@ void Game::add_ass() {
             if (enemyAsteroid[i]->getAlive() == false) {
                 enemyAsteroid[i]->setStartPos();
                 enemyAsteroid[i]->setAlive(true);
-                // this->enemyShip[0]->move();
                 break ;
             }
         }
     }
-    // for (int i = 0; i < 15; i++)
-    // {
-    //     if (this->time % 100 == 0){
-        
-    //             break ;
-    //     }
-    // }
+    for (int i = 0; i < 50; i++)
+    {
+        if (this->time % 200 == 0){    
+            if (enemyShip[i]->getAlive() == false) {
+                enemyShip[i]->setStartPos();
+                enemyShip[i]->setAlive(true);
+                break;
+        }
+    }
+    }
 }
 
 void Game::check_col() {
 	static int immortal_time = 0;
+    int type = 0;
+
 	if (immortal_time > 0)
 		immortal_time--;
 	if (immortal_time == 0  && player->getImmortal() == true){
@@ -102,12 +106,28 @@ void Game::check_col() {
                     	this->points++;
                         enemyAsteroid[j]->setAlive(false);
                     }
+                        if (playerShoots[i]->getX() >= enemyShip[j]->getX() - 1 &&
+                        playerShoots[i]->getX() <= enemyShip[j]->getX() + enemyShip[j]->getSpeed() + 1 &&
+                        playerShoots[i]->getY() == enemyShip[j]->getY()) {
+                        playerShoots[i]->setAlive(false);
+                        this->points += 3;
+                        enemyShip[j]->setAlive(false);
+                    }
                 }
             }
-            if ((player->getImmortal() == false) && ((player->getX() == enemyAsteroid[j]->getX()) && (player->getY() == enemyAsteroid[j]->getY()))) {
-                mvwprintw(playwin, 1, 10, "not immortal");
-
-                enemyAsteroid[j]->setAlive(false);
+            if (player->getImmortal() == false
+                && (
+                    (player->getX() == enemyAsteroid[j]->getX() && player->getY() == enemyAsteroid[j]->getY() && (type = 1))
+                    || (player->getX() == enemyShoots[j]->getX() && player->getY() == enemyShoots[j]->getY() && (type = 2))
+                    || (player->getX() == enemyShip[j]->getX() && player->getY() == enemyShip[j]->getY() && (type = 3)))
+                ) {
+                if (type == 1){
+                    enemyAsteroid[j]->setAlive(false);
+                } else if (type == 2){
+                    enemyShoots[j]->setAlive(false);
+                } else if (type == 3){
+                    enemyShip[j]->setAlive(false);
+                }
                 player->removeLive();
                 immortal_time = 180;
                 player->setImmortal(true);
@@ -115,7 +135,6 @@ void Game::check_col() {
                 	done = true;
                 	while (1) {
                 	    wclear(playwin);
-                	    // box(playwin, 0, 0);
                 	    attron(COLOR_PAIR(1));
                 	    mvprintw(this->yMax / 2, this->xMax /2 - 1, "*GAME OVER*");
                 	    attroff(COLOR_PAIR(1));
@@ -129,14 +148,16 @@ void Game::check_col() {
 
 void Game::moveall() {
     for (int i = 0; i < 100; i++) {
-        if (i < 1)
+        if (i < 50)
         {
-            // if (enemyShip[i]->getAlive() == true) {
-                // enemyShip[i]->move();
-                // enemyShip[i]->display();
-            // }
-            // if (enemyShip[i]->getX() < 1)
-            //     enemyShip[i]->setStartPos();
+            if (enemyShip[i]->getAlive() == true) {
+                enemyShip[i]->move();
+                enemyShip[i]->display();
+                if (this->time % 100 == 0)
+                    enemyShip[i]->shoot();
+            }
+            if (enemyShip[i]->getX() < 1)
+                enemyShip[i]->setStartPos();
         }
         if (i < 50) {
             if (enemyAsteroid[i]->getAlive() == true) {
@@ -145,6 +166,8 @@ void Game::moveall() {
             }
             if (enemyAsteroid[i]->getX() < 1)
                 enemyAsteroid[i]->setStartPos();
+            this->enemyShoots[i]->move();
+            this->enemyShoots[i]->display();
         }
         this->playerShoots[i]->move();
         this->playerShoots[i]->display();

@@ -7,14 +7,14 @@ EnemyShip::EnemyShip(EnemyShip const &src){
 	*this = src;
 }
 
-EnemyShip::EnemyShip(WINDOW *win){// Shoot **shoot){
+EnemyShip::EnemyShip(WINDOW *win, Shoot **shoot){
 	this->_win = win;
     this->_size = 1;
     this->_speed = 0.1;
-    this->_icon = "🐉";
+    this->_icon = (char *)"🐉";
     this->_alive = false;
     this->setStartPos();
-    // this->_shoots = shoot;
+    this->_shoots = shoot;
 }
 
 void EnemyShip::setStartPos()
@@ -32,7 +32,7 @@ void EnemyShip::setStartPos()
 void EnemyShip::shoot(){
 	if (this->getAlive() == true)
 	{
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 50; i++)
 		{
 			if (this->_shoots[i]->getAlive() == false) {
             	this->_shoots[i]->setAlive(true);

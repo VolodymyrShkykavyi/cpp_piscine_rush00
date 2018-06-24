@@ -10,7 +10,7 @@ class EnemyShip : public  Enemy
 public:
 	EnemyShip();
 	EnemyShip(EnemyShip const &src);
-	EnemyShip(WINDOW *win);//, Shoot **shoot);
+	EnemyShip(WINDOW *win, Shoot **shoot);
 	~EnemyShip();
 	void shoot();
 	void setStartPos();

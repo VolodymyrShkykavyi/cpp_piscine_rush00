@@ -4,6 +4,8 @@ Shoot::Shoot(WINDOW *win, int y, int x, int direction)
 {
     this->_win = win;
     this->_speed = 1.5;
+    if (direction == -1)
+        this->_speed = 1;
     this->_direction = direction;
     this->_xLoc = x + direction;
     this->_yLoc = y + direction;
@@ -18,6 +20,12 @@ void Shoot::move()
         if (this->_xLoc >= this->_maxX){
             this->setAlive(false);
         }
+        if (this->_direction == -1)
+        {
+            if (this->_xLoc <= 0){
+                this->setAlive(false);
+            }
+        }
     }
 }
 
@@ -27,6 +35,10 @@ void    Shoot::display()
         wattron(this->_win, COLOR_PAIR(1));
         mvwaddstr(this->_win, this->_yLoc, this->_xLoc, "❃");
         wattroff(this->_win, COLOR_PAIR(1));
+    }
+    if (this->_alive && this->_direction == -1)
+    {
+        mvwaddstr(this->_win, this->_yLoc, this->_xLoc, "🔥");
     }
 }
 
