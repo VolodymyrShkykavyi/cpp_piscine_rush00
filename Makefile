@@ -3,7 +3,7 @@ SRC = Enemy.cpp EnemyAsteroid.cpp EnemyBoss.cpp EnemyShip.cpp Game.cpp Player.cp
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 OBJ_DIR = objects
 CC = clang++
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -std=c++98
 INCLUDES = -lncurses $(ncursesw5-config --cflags --libs)
 
 all: $(NAME)

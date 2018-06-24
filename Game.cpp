@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2050/06/23 13:46:50 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 20:30:13 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:50:53 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,8 @@ void	Game::showEndGame() {
 			}
 			attron(COLOR_PAIR(1));
 			mvprintw(this->yMax / 2, this->xMax / 2 - 1, "*GAME OVER*");
+			mvprintw(this->yMax / 2 + 2, this->xMax / 2 - 1, "YOUR SCORE:");
+			mvprintw(this->yMax / 2 + 3, this->xMax / 2 - 1, "     %d", points);
 			attroff(COLOR_PAIR(1));
 			refresh();
 		}
@@ -279,8 +281,6 @@ void Game::moveall() {
 
 void Game::start() {
 	init();
-
-	enemyBoss->setAlive(true);
 	while (!done) {
 		getmaxyx(playwin, this->yMax, this->xMax);
 		this->t1 = clock() / (CLOCKS_PER_SEC / FPS);
