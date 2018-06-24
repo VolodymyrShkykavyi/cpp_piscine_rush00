@@ -101,6 +101,10 @@ int Player::getmv(int y, int x){
         case ' ':
             this->shoot();
             break;
+        case 27:
+        	endwin();
+        	exit(0);
+        	break;
 		default:
 			break;
 	}
