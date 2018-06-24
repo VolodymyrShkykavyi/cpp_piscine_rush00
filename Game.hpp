@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:41:37 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 16:09:41 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 16:50:28 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class Game
 	EnemyShip  	*enemyShip[50];
 	Shoot		**playerShoots;
 	Shoot		*enemyShoots[50];
+	Enemy		*stars[50];
 	bool done;
 	clock_t t1;
 	clock_t t2;

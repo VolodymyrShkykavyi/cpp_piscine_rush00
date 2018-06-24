@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2050/06/23 13:46:50 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 16:20:20 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:00:45 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void Game::init() {
     init_pair(1, COLOR_YELLOW, COLOR_BLACK);
     init_pair(2, COLOR_CYAN, COLOR_BLACK);
     init_pair(3, COLOR_GREEN, COLOR_BLACK);
-    init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(4, COLOR_WHITE, COLOR_BLACK);
     clear();
     noecho();
     cbreak();
@@ -52,13 +52,9 @@ void Game::init() {
     this->playerShoots = player->getShoots();
     for (int i = 0; i < 50; i++) {
         this->enemyShoots[i] = new Shoot(this->playwin, 0, 0, -1);
-    }
-    for (int i = 0; i < 50; i++){
         this->enemyShip[i] = new EnemyShip(this->playwin, &this->enemyShoots[0]);
-        // this->enemyShip[i]->setAlive(true);
-    }
-    for (int i = 0; i < 50; i++) {
-        enemyAsteroid[i] = new EnemyAsteroid(this->playwin);
+        this->enemyAsteroid[i] = new EnemyAsteroid(this->playwin);
+        this->stars[i] = new Enemy(this->playwin);
     }
     done = false;
     this->t2 = clock() / (CLOCKS_PER_SEC / FPS);
@@ -72,6 +68,16 @@ void Game::add_ass() {
                 enemyAsteroid[i]->setAlive(true);
                 break ;
             }
+        }
+    }
+    for (int i = 0; i < 50; i++)
+    {
+        if (this->time % 20 == 0) {
+        if (stars[i]->getAlive() == false) {
+               stars[i]->setStartPos();
+               stars[i]->setAlive(true);
+               break ;
+           }
         }
     }
     for (int i = 0; i < 50; i++)
@@ -166,6 +172,12 @@ void Game::moveall() {
             }
             if (enemyAsteroid[i]->getX() < 1)
                 enemyAsteroid[i]->setStartPos();
+            if (this->stars[i]->getAlive() == true) {
+                this->stars[i]->move();
+                this->stars[i]->display();
+            }
+            if (this->stars[i]->getX() < 1)
+                this->stars[i]->setStartPos();
             this->enemyShoots[i]->move();
             this->enemyShoots[i]->display();
         }

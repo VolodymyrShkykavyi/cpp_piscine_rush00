@@ -16,6 +16,7 @@ protected:
     int		_pointCost;
 public:
 	Enemy();
+	Enemy(WINDOW *newwin);
 	~Enemy();
     void    display();
 	int	    getSize();
