@@ -67,7 +67,17 @@ std::string Game::getTime() {
 	int seconds = this->time / FPS;
 	int minutes = seconds / 60;
 
-	return std::to_string(minutes) + ":" + std::to_string(seconds % 60);
+	return std::to_string(minutes) + " min " + std::to_string(seconds % 60) + "s";
+}
+
+void Game::printLives() {
+	int 	startPos = 8;
+
+	mvwprintw(playwin, 1, 1, "LIVES:");
+	for (int i = 0; i < player->getLives(); i++){
+		mvwprintw(playwin, 1, startPos, "❤️");
+		startPos += 3;
+	}
 }
 
 void Game::add_ass() {
@@ -258,8 +268,9 @@ void Game::start() {
 			moveall();
 			check_col();
 			refresh();
-			mvwprintw(playwin, 1, 1, "lives: %d", player->getLives());
-			mvwprintw(playwin, 1, 10, "TIME: %s POINTS: %d", this->getTime().c_str(), this->points);
+
+			this->printLives();
+			mvwprintw(playwin, 1, 19, "TIME: %s POINTS: %d", this->getTime().c_str(), this->points);
 		}
 	}
 	endwin();

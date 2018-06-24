@@ -55,6 +55,7 @@ public:
 	void	add_ass();
 	void	moveall();
 	std::string	getTime();
+	void	printLives();
 };
 
 #endif
