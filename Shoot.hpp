@@ -14,7 +14,11 @@ private:
     bool    _alive;
 
 public:
+    Shoot();
+    Shoot(Shoot const &src);
     Shoot(WINDOW *win, int y, int x, int direction = -1);
+    Shoot & operator=(Shoot const &other);
+    ~Shoot();
     void    move();
     void    display();
     int	    getX();

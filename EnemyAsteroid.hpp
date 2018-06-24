@@ -12,6 +12,7 @@ protected:
 public:
 
 	EnemyAsteroid();
+	EnemyAsteroid(EnemyAsteroid const &src);
     EnemyAsteroid(WINDOW *win);
     EnemyAsteroid & operator=(EnemyAsteroid const &other);
     ~EnemyAsteroid();

@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:41:37 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 16:50:28 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:30:57 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ class Game
 public:
 	Game();
 	Game(Game const &src);
+	Game & operator=(Game const &other);
 	~Game();
 	void	init();	
 	void	start();

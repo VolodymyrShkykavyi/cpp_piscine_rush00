@@ -2,6 +2,10 @@
 
 EnemyAsteroid::EnemyAsteroid(){}
 
+EnemyAsteroid::EnemyAsteroid(EnemyAsteroid const &src){
+    *this = src;
+}
+
 EnemyAsteroid & EnemyAsteroid::operator=(EnemyAsteroid const &other){
     if (this != &other)
     {

@@ -1,5 +1,11 @@
 #include "Shoot.hpp"
 
+Shoot::Shoot(){}
+
+Shoot::Shoot(Shoot const &src){
+    *this = src;
+}
+
 Shoot::Shoot(WINDOW *win, int y, int x, int direction)
 {
     this->_win = win;
@@ -11,6 +17,22 @@ Shoot::Shoot(WINDOW *win, int y, int x, int direction)
     this->_yLoc = y + direction;
     this->_alive = false;
 }
+
+Shoot & Shoot::operator=(Shoot const &other){
+    if (this != &other){
+        this->_direction = other._direction;
+        this->_speed = other._speed;
+        this->_yLoc = other._yLoc;
+        this->_xLoc = other._xLoc;
+        this->_maxX = other._maxX;
+        this->_maxY = other._maxY;
+        this->_win = other._win;
+        this->_alive = other._alive;
+    }
+    return *this;
+}
+
+Shoot::~Shoot(){}
 
 void Shoot::move()
 {

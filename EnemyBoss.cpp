@@ -2,6 +2,10 @@
 
 EnemyBoss::EnemyBoss() {}
 
+EnemyBoss::EnemyBoss(EnemyBoss const &src){
+	*this = src;
+}
+
 EnemyBoss::EnemyBoss(WINDOW *win, Shoot **shoots) {
 	this->_win = win;
 	this->_shoots = shoots;

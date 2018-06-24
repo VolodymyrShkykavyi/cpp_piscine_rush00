@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:39 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 20:21:15 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:33:09 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <ctime>
 
 Player::Player(){}
+
+Player::Player(Player const &src){
+	*this = src;
+}
 
 Player::Player(WINDOW *win, int y, int x){
 	curwin_ = win;
@@ -47,10 +51,6 @@ Player & Player::operator=(Player const &other){
         this->_immortal = other._immortal;
 	}
 	return *this;
-}
-
-Player::Player(Player const &src){
-	*this = src;
 }
 
 Player::~Player(){

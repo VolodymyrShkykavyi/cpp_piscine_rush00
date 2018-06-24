@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2050/06/23 13:46:50 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 17:00:45 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:30:13 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,29 @@ Game::Game() {}
 
 Game::Game(Game const &src) {
 	*this = src;
+}
+
+Game & Game::operator=(Game const &other){
+    if (this != &other){
+        this->yMax = other.yMax;
+        this->playwin = other.playwin;
+        this->player = other.player;
+        for (int i = 0; i < 50; i++){
+     	   this->enemyAsteroid[i] = other.enemyAsteroid[i];
+     	   this->enemyShoots[i] = other.enemyShoots[i];
+     	   this->stars[i] = other.stars[i];
+     	   this->enemyShip[i] = other.enemyShip[i];
+     	}
+        this->enemyBoss = other.enemyBoss;
+        this->playerShoots = other.playerShoots;
+        this->done = other.done;
+        this->t1 = other.t1;
+        this->t2 = other.t2;
+        this->time = other.time;
+        this->points = other.points;
+        this->pastpoints = other.pastpoints;
+    }
+    return *this;
 }
 
 Game::~Game() {}

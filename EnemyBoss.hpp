@@ -15,6 +15,7 @@ class EnemyBoss : public Enemy
 
 public:
 	EnemyBoss();
+	EnemyBoss(EnemyBoss const &src);
 	EnemyBoss(WINDOW *win, Shoot **shoot);
 	~EnemyBoss();
 

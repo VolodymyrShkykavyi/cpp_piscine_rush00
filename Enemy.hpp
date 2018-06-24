@@ -17,6 +17,7 @@ protected:
 public:
 	Enemy();
 	Enemy(WINDOW *newwin);
+	Enemy(Enemy const &src);
 	Enemy & operator=(Enemy const &other);
 	~Enemy();
     void    display();

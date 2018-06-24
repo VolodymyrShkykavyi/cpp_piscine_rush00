@@ -2,6 +2,10 @@
 
 Enemy::Enemy(){}
 
+Enemy::Enemy(Enemy const &src) {
+	*this = src;
+}
+
 Enemy::Enemy(WINDOW *newwin) {
 	this->_icon = (char*)"⋆";
 	this->_speed = 0.2;
