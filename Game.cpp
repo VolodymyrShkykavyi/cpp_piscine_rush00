@@ -143,7 +143,7 @@ void Game::check_col() {
 				&& (
 						(player->getX() == enemyAsteroid[j]->getX() && player->getY() == enemyAsteroid[j]->getY() &&
 						 (type = 1))
-						|| ((player->getX() == enemyShoots[j]->getX() || player->getX() == enemyShoots[j]->getX() - 1) && player->getY() == enemyShoots[j]->getY() &&
+						|| ((player->getX() >= enemyShoots[j]->getX()  && player->getX() <= enemyShoots[j]->getX() + 1) && player->getY() == enemyShoots[j]->getY() &&
 							(type = 2))
 						|| (player->getX() == enemyShip[j]->getX() && player->getY() == enemyShip[j]->getY() &&
 							(type = 3)))
