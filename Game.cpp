@@ -50,7 +50,7 @@ void Game::init() {
 	}
 	this->playwin = newwin(0, 0, 0, 0);
 	nodelay(playwin, true);
-	player = new Player(playwin, 1, 1, '>');
+	player = new Player(playwin, 1, 1);
 	this->playerShoots = player->getShoots();
 	for (int i = 0; i < 50; i++) {
 		this->enemyShoots[i] = new Shoot(this->playwin, 0, 0, -1);

@@ -17,7 +17,7 @@
 
 Player::Player(){}
 
-Player::Player(WINDOW *win, int y, int x, char c){
+Player::Player(WINDOW *win, int y, int x){
 	curwin_ = win;
 	yLoc_ = y + 1;
 	xLoc_ = x;
@@ -27,7 +27,7 @@ Player::Player(WINDOW *win, int y, int x, char c){
 	keypad(curwin_, true);
 	player_ = (char*)"👾";
 
-    for (int i; i < 100; i++) {
+    for (int i = 0; i < 100; i++) {
         this->_shoots[i] = new Shoot(this->curwin_, this->yLoc_, this->xLoc_, 1);
     }
 }

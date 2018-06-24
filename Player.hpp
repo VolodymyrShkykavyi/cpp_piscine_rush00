@@ -27,7 +27,7 @@ class Player
 
 public:
 	Player();
-	Player(WINDOW *win, int y, int x, char c);
+	Player(WINDOW *win, int y, int x);
 	Player(Player const &src);
 	~Player();
 
