@@ -235,9 +235,7 @@ void Game::moveall() {
 void Game::start() {
 	init();
 
-	enemyBoss->setAlive(true);
 	while (!done) {
-		// attron(COLOR_PAIR(1));
 		getmaxyx(playwin, this->yMax, this->xMax);
 		this->t1 = clock() / (CLOCKS_PER_SEC / FPS);
 		if (this->t1 > this->t2) {
@@ -246,15 +244,12 @@ void Game::start() {
 			player->getmv(yMax, xMax);
 			wclear(playwin);
 			player->display();
-			// box(playwin, 0, 0);
-			//if (enemyBoss->getAlive() == false)
-				add_ass();
+			add_ass();
 			moveall();
 			check_col();
 			refresh();
 			mvwprintw(playwin, 1, 1, "lives: %d", player->getLives());
-			mvwprintw(playwin, 1, 10, "TIME: %d POINTS: %d _%d", this->time / FPS, this->points, this->pastpoints);
-			// attroff(COLOR_PAIR(1));
+			mvwprintw(playwin, 1, 10, "TIME: %d POINTS: %d", this->time / FPS, this->points);
 		}
 	}
 	endwin();
