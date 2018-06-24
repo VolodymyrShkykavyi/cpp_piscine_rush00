@@ -17,13 +17,17 @@ protected:
 public:
 	Enemy();
 	Enemy(WINDOW *newwin);
+	Enemy & operator=(Enemy const &other);
 	~Enemy();
     void    display();
-	int	    getSize();
-	int	    getSpeed();
-	int	    getX();
-	int     getY();
-	bool	getAlive();
+	int	    getSize() const;
+	int	    getSpeed() const;
+	int	    getX() const;
+	int     getY() const;
+	bool	getAlive() const;
+	char * 	getIcon() const;
+	WINDOW* getWin() const;
+	int 	getPointCost() const;
 	void	setAlive(bool is);
     void    setStartPos();
     void	move();

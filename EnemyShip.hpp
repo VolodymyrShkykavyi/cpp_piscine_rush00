@@ -11,6 +11,7 @@ public:
 	EnemyShip();
 	EnemyShip(EnemyShip const &src);
 	EnemyShip(WINDOW *win, Shoot **shoot);
+	EnemyShip & operator=(EnemyShip const &other);
 	~EnemyShip();
 	void shoot();
 	void setStartPos();

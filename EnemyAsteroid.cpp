@@ -2,6 +2,23 @@
 
 EnemyAsteroid::EnemyAsteroid(){}
 
+EnemyAsteroid & EnemyAsteroid::operator=(EnemyAsteroid const &other){
+    if (this != &other)
+    {
+        this->_size = other.getSize();
+        this->_xLoc = other.getX();
+        this->_yLoc = other.getY();
+        this->_icon = other.getIcon();
+        this->_win = other.getWin();
+        this->_alive = other.getAlive();
+        this->_pointCost = other.getPointCost();
+        this->_iconsArr[0] = other._iconsArr[0];
+        this->_iconsArr[1] = other._iconsArr[1];
+        this->_iconsArr[2] = other._iconsArr[2];
+    }
+    return *this;
+}
+
 EnemyAsteroid::EnemyAsteroid(WINDOW *win)
 {
     this->_win = win;

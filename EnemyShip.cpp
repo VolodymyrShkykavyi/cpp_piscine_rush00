@@ -7,6 +7,20 @@ EnemyShip::EnemyShip(EnemyShip const &src){
 	*this = src;
 }
 
+EnemyShip & EnemyShip::operator=(EnemyShip const &other){
+    if (this != &other){
+        this->_size = other.getSize();
+        this->_xLoc = other.getX();
+        this->_yLoc = other.getY();
+        this->_icon = other.getIcon();
+        this->_win = other.getWin();
+        this->_alive = other.getAlive();
+        this->_pointCost = other.getPointCost();
+        this->_shoots = other._shoots;
+    }
+    return *this;
+}
+
 EnemyShip::EnemyShip(WINDOW *win, Shoot **shoot){
 	this->_win = win;
     this->_size = 1;

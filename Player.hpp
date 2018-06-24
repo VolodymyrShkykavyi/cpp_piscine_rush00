@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:25 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 13:34:56 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:21:36 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ public:
 
     int	    getX();
 	int     getY();
+	Player & operator=(Player const &other);
 	void mvup();
 	void mvdown();
 	void mvleft();

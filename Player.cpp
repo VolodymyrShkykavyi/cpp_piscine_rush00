@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:39 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 15:55:14 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:21:15 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,23 @@ Player::Player(WINDOW *win, int y, int x){
     for (int i = 0; i < 100; i++) {
         this->_shoots[i] = new Shoot(this->curwin_, this->yLoc_, this->xLoc_, 1);
     }
+}
+
+Player & Player::operator=(Player const &other){
+	if (this != &other){
+		this->xLoc_ = other.xLoc_;
+        this->yLoc_ = other.yLoc_;
+        this->xMax_ = other.xMax_;
+        this->yMax_ = other.yMax_;
+        this->player_ = other.player_;
+        this->curwin_ = other.curwin_;
+        for (int i = 0; i < 100; i++){
+        	this->_shoots[i] = other._shoots[i];
+        }
+        this->_lives = other._lives;
+        this->_immortal = other._immortal;
+	}
+	return *this;
 }
 
 Player::Player(Player const &src){

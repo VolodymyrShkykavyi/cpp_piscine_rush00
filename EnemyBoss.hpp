@@ -23,11 +23,10 @@ public:
 	void display();
 	void move();
 	void setHp(int hp);
-
+	EnemyBoss & operator=(EnemyBoss const &other);
 	bool checkShootCollision(Shoot *playerShoots);
 	bool checkPlayerCollision(int y, int x);
 	void removeLife();
-//	void	setAlive(bool is);
 };
 
 #endif

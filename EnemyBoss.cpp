@@ -14,6 +14,23 @@ EnemyBoss::EnemyBoss(WINDOW *win, Shoot **shoots) {
 	this->setStartPos();
 }
 
+EnemyBoss & EnemyBoss::operator=(EnemyBoss const &other){
+	if (this != &other){
+		this->_size = other.getSize();
+        this->_xLoc = other.getX();
+        this->_yLoc = other.getY();
+        this->_icon = other.getIcon();
+        this->_win = other.getWin();
+        this->_alive = other.getAlive();
+        this->_pointCost = other.getPointCost();
+        this->_shoots = other._shoots;
+        this->_direction = other._direction;
+        this->_hp = other._hp;
+        this->_maxHp = other._maxHp;
+	}
+	return *this;
+}
+
 void EnemyBoss::setStartPos() {
 	int maxX = 0;
 	int maxY = 0;

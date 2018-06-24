@@ -10,26 +10,50 @@ Enemy::Enemy(WINDOW *newwin) {
 	this->setStartPos();
 }
 
+Enemy & Enemy::operator=(Enemy const &other){
+	if (this != &other){
+		this->_size = other.getSize();
+		this->_xLoc = other.getX();
+		this->_yLoc = other.getY();
+		this->_icon = other.getIcon();
+		this->_win = other.getWin();
+		this->_alive = other.getAlive();
+		this->_pointCost = other.getPointCost();
+	}
+	return *this;
+}
+
 Enemy::~Enemy() {}
 
-int		Enemy::getSize()
-{
+int		Enemy::getSize() const{
 	return this->_size;
 }
 
-int		Enemy::getSpeed()
+int		Enemy::getSpeed()const
 {
 	return this->_speed;
 }
 
-int		Enemy::getX()
+int		Enemy::getX()const
 {
 	return this->_xLoc;
 }
 
-int		Enemy::getY()
+int		Enemy::getY()const
 {
 	return this->_yLoc;
+}
+
+char * Enemy::getIcon()const{
+	return this->_icon;
+}
+
+WINDOW* Enemy::getWin()const{
+	return this->_win;
+}
+
+int 	Enemy::getPointCost()const{
+	return this->_pointCost;
 }
 
 void    Enemy::display()
@@ -44,7 +68,7 @@ void	Enemy::move()
 	this->_xLoc -= this->_speed;
 }
 
-bool	Enemy::getAlive()
+bool	Enemy::getAlive()const
 {
 	return this->_alive;
 }
