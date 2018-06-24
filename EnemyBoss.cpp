@@ -1,27 +1,20 @@
 #include "EnemyBoss.hpp"
 
-/*
- * 	 /0
- * <000
- * 	 \0
- *
- */
-
 EnemyBoss::EnemyBoss() {}
 
-EnemyBoss::EnemyBoss(WINDOW *win, Shoot ** shoots)
-{
+EnemyBoss::EnemyBoss(WINDOW *win, Shoot **shoots) {
 	this->_win = win;
 	this->_shoots = shoots;
 	this->_size = 1;
 	this->_speed = 0.1;
 	this->_alive = false;
 	this->_direction = 1;
+	this->_hp = 0;
+	this->_maxHp = 0;
 	this->setStartPos();
 }
 
-void EnemyBoss::setStartPos()
-{
+void EnemyBoss::setStartPos() {
 	int maxX = 0;
 	int maxY = 0;
 
@@ -29,43 +22,101 @@ void EnemyBoss::setStartPos()
 	maxY -= 2;
 
 	this->_xLoc = maxX - 2;
-	this->_yLoc = rand() % (maxY - 3) + 2;
+	this->_yLoc = rand() % (maxY - 4) + 3;
 	this->_yLoc += 1;
 }
 
-void	EnemyBoss::shoot()
-{
-	if (this->getAlive() == true)
-	{
-		for (int i = 0; i < 50; i++)
-		{
+void EnemyBoss::shoot() {
+	int num = 0;
+
+	if (this->getAlive() == true) {
+		for (int i = 0; i < 50; i++) {
 			if (this->_shoots[i]->getAlive() == false) {
 				this->_shoots[i]->setAlive(true);
 				this->_shoots[i]->setX(this->_xLoc);
-				this->_shoots[i]->setY(this->_yLoc);
+				if (num == 0) {
+					this->_shoots[i]->setY(this->_yLoc - 2);
+				} else if (num == 1) {
+					this->_shoots[i]->setY(this->_yLoc);
+				} else if (num == 2) {
+					this->_shoots[i]->setY(this->_yLoc + 2);
+				}
+				num++;
+			}
+			if (num == 3){
 				break;
 			}
 		}
 	}
 }
 
-void	EnemyBoss::display() {
-	mvwaddstr(this->_win, this->_yLoc - 1, this->_xLoc, "/");
-	mvwaddstr(this->_win, this->_yLoc, this->_xLoc, "<");
-	mvwaddstr(this->_win, this->_yLoc, this->_xLoc + 1, "]");
-	mvwaddstr(this->_win, this->_yLoc + 1, this->_xLoc, "\\");
+void EnemyBoss::display() {
+	if (this->getAlive()) {
+
+		mvwaddstr(this->_win, this->_yLoc - 2, this->_xLoc, "<");
+		mvwaddstr(this->_win, this->_yLoc - 1, this->_xLoc, "◢");
+		mvwaddstr(this->_win, this->_yLoc - 1, this->_xLoc + 1, "◼");
+		mvwaddstr(this->_win, this->_yLoc, this->_xLoc - 1, "👽");
+		mvwaddstr(this->_win, this->_yLoc, this->_xLoc + 1, "🕸");
+		mvwaddstr(this->_win, this->_yLoc + 1, this->_xLoc + 1, "◼");
+		mvwaddstr(this->_win, this->_yLoc + 1, this->_xLoc, "◥");
+		mvwaddstr(this->_win, this->_yLoc + 2, this->_xLoc, "<");
+	}
 }
 
-void	EnemyBoss::move() {
-	int maxX = 0;
-	int maxY = 0;
+void EnemyBoss::move() {
+	if (this->getAlive()) {
+		int maxX = 0;
+		int maxY = 0;
 
-	getmaxyx(this->_win, maxY, maxX);
+		getmaxyx(this->_win, maxY, maxX);
 
-	this->_yLoc += this->_direction * this->_speed;
-	if (this->_yLoc <= 3) {
-		this->_direction = 1;
-	} else if (this->_yLoc >= maxY - 2) {
-		this->_direction = -1;
+		this->_yLoc += this->_direction * this->_speed;
+		if (this->_yLoc <= 4) {
+			this->_direction = 1;
+		} else if (this->_yLoc >= maxY - 3) {
+			this->_direction = -1;
+		}
 	}
+}
+
+void	EnemyBoss::removeLife() {
+	if (this->_hp > 0) {
+		this->_hp--;
+	} else {
+		this->setAlive(false);
+	}
+}
+
+bool EnemyBoss::checkShootCollision(Shoot *playerShoot) {
+	if (this->getAlive()) {
+			int x = playerShoot->getX();
+			int y = playerShoot->getY();
+
+			if (x >= this->getX() - 2 &&
+				y >= this->_yLoc - 2 &&
+				y <= this->_yLoc + 2
+					) {
+				playerShoot->setAlive(false);
+				return true;
+		}
+	}
+	return false;
+}
+
+bool EnemyBoss::checkPlayerCollision(int y, int x) {
+	if (this->getAlive()) {
+		if (x >= this->_xLoc - 1 &&
+			y >= this->_yLoc - 2 &&
+			y <= this->_yLoc + 2
+				) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void	EnemyBoss::setHp(int hp) {
+	this->_maxHp += hp;
+	this->_hp = this->_maxHp;
 }

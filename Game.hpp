@@ -43,6 +43,7 @@ class Game
 	clock_t t2;
 	int time;
 	int points;
+	int pastpoints;
 public:
 	Game();
 	Game(Game const &src);

@@ -45,6 +45,7 @@ public:
 	void display();
     void    shoot();
     Shoot ** getShoots();
+
 };
 
 #endif
