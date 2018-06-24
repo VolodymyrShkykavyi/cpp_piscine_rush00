@@ -19,6 +19,7 @@
 # include <sys/time.h>
 #include <iostream>
 #include <stdlib.h>
+#include <string>
 # include "Player.hpp"
 # include "EnemyAsteroid.hpp"
 #include "Shoot.hpp"
@@ -53,6 +54,7 @@ public:
 	void	check_col();
 	void	add_ass();
 	void	moveall();
+	std::string	getTime();
 };
 
 #endif
