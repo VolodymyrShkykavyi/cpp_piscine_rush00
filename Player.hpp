@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:25 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 20:43:36 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 12:57:38 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ public:
 	void display();
     void    shoot();
     Shoot ** getShoots();
-
 };
 
 #endif

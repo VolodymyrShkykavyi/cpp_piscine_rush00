@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:39 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 20:57:08 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 12:50:37 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Player::Player(){}
 
 Player::Player(WINDOW *win, int y, int x, char c){
 	curwin_ = win;
-	yLoc_ = y;
+	yLoc_ = y + 1;
 	xLoc_ = x;
 	_lives = 3;
 	_immortal = false;
@@ -43,8 +43,8 @@ Player::~Player(){
 void Player::mvup(){
 	mvwaddch(curwin_, yLoc_, xLoc_, ' ');
 	yLoc_--;
-	if (yLoc_ < 1)
-		yLoc_ = 1;
+	if (yLoc_ < 2)
+		yLoc_ = 2;
 }
 
 void Player::mvdown(){

@@ -27,7 +27,9 @@ int		Enemy::getY()
 
 void    Enemy::display()
 {
+	wattron(this->_win, COLOR_PAIR(4));
     mvwaddch(this->_win, this->_yLoc, this->_xLoc, this->_icon);
+    wattroff(this->_win, COLOR_PAIR(4));
 }
 
 void	Enemy::move()

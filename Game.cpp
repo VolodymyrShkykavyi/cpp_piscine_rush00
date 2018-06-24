@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2050/06/23 13:46:15 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 21:37:42 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 12:59:24 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void Game::init() {
     init_pair(1, COLOR_YELLOW, COLOR_BLACK);
     init_pair(2, COLOR_CYAN, COLOR_BLACK);
     init_pair(3, COLOR_GREEN, COLOR_BLACK);
+    init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
     clear();
     noecho();
     cbreak();
@@ -105,11 +106,11 @@ void Game::check_col() {
                 	done = true;
                 	while (1) {
                 	    wclear(playwin);
-                	    box(playwin, 0, 0);
+                	    // box(playwin, 0, 0);
                 	    attron(COLOR_PAIR(1));
-                	    mvwprintw(playwin, 1, 1, "you lose");
+                	    mvprintw(this->yMax / 2, this->xMax /2 - 1, "*GAME OVER*");
                 	    attroff(COLOR_PAIR(1));
-                	    wrefresh(playwin);
+                	    refresh();
                 	}
             }
             }

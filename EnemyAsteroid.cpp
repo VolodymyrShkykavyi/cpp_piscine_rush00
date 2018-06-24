@@ -19,6 +19,8 @@ void EnemyAsteroid::setStartPos()
     int maxY = 0;
 
     getmaxyx(this->_win, maxY, maxX);
+    maxY -= 1;
     this->_xLoc = maxX - 1;
     this->_yLoc = rand() % (maxY - 2) + 1;
+    this->_yLoc += 1;
 }
