@@ -56,6 +56,7 @@ void Game::init() {
         this->enemyAsteroid[i] = new EnemyAsteroid(this->playwin);
         this->stars[i] = new Enemy(this->playwin);
     }
+    this->enemyBoss = new EnemyBoss(this->playwin, this->enemyShoots);
     done = false;
     this->t2 = clock() / (CLOCKS_PER_SEC / FPS);
 }
@@ -188,6 +189,7 @@ void Game::moveall() {
 
 void Game::start() {
     init();
+
     while (!done) {
     	// attron(COLOR_PAIR(1));
         getmaxyx(playwin, this->yMax, this->xMax);

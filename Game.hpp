@@ -23,6 +23,7 @@
 # include "EnemyAsteroid.hpp"
 #include "Shoot.hpp"
 #include "EnemyShip.hpp"
+#include "EnemyBoss.hpp"
 
 # define FPS 60
 
@@ -33,6 +34,7 @@ class Game
 	Player *player;
 	EnemyAsteroid  *enemyAsteroid[50];
 	EnemyShip  	*enemyShip[50];
+	EnemyBoss	*enemyBoss;
 	Shoot		**playerShoots;
 	Shoot		*enemyShoots[50];
 	Enemy		*stars[50];
