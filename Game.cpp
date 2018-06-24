@@ -116,24 +116,27 @@ void Game::check_col() {
 		player->setImmortal(false);
 	}
 	for (int j = 0; j < 50; j++) {
-		if (enemyAsteroid[j]->getAlive()) {
 			for (int i = 0; i < 100; i++) {
 				if (playerShoots[i]->getAlive()) {
-					if (playerShoots[i]->getX() >= enemyAsteroid[j]->getX() - 1 &&
-						playerShoots[i]->getX() <= enemyAsteroid[j]->getX() + enemyAsteroid[j]->getSpeed() + 1 &&
-						playerShoots[i]->getY() == enemyAsteroid[j]->getY()) {
-						playerShoots[i]->setAlive(false);
-						this->points++;
-						this->pastpoints++;
-						enemyAsteroid[j]->setAlive(false);
+					if (enemyAsteroid[j]->getAlive()) {
+						if (playerShoots[i]->getX() >= enemyAsteroid[j]->getX() - 1 &&
+							playerShoots[i]->getX() <= enemyAsteroid[j]->getX() + enemyAsteroid[j]->getSpeed() + 1 &&
+							playerShoots[i]->getY() == enemyAsteroid[j]->getY()) {
+							playerShoots[i]->setAlive(false);
+							this->points++;
+							this->pastpoints++;
+							enemyAsteroid[j]->setAlive(false);
+						}
 					}
-					if (playerShoots[i]->getX() >= enemyShip[j]->getX() - 1 &&
-						playerShoots[i]->getX() <= enemyShip[j]->getX() + enemyShip[j]->getSpeed() + 1 &&
-						playerShoots[i]->getY() == enemyShip[j]->getY()) {
-						playerShoots[i]->setAlive(false);
-						this->points += 3;
-						this->pastpoints += 3;
-						enemyShip[j]->setAlive(false);
+					if (enemyShip[j]->getAlive()) {
+						if (playerShoots[i]->getX() >= enemyShip[j]->getX() - 1 &&
+							playerShoots[i]->getX() <= enemyShip[j]->getX() + enemyShip[j]->getSpeed() + 1 &&
+							playerShoots[i]->getY() == enemyShip[j]->getY()) {
+							playerShoots[i]->setAlive(false);
+							this->points += 3;
+							this->pastpoints += 3;
+							enemyShip[j]->setAlive(false);
+						}
 					}
 					if (enemyBoss->getAlive()) {
 						if (enemyBoss->checkShootCollision(playerShoots[i])){
@@ -141,6 +144,7 @@ void Game::check_col() {
 							if (enemyBoss->getAlive() == false) {
 								this->points += 15;
 								this->pastpoints = 0;
+
 							}
 						}
 					}
@@ -181,7 +185,6 @@ void Game::check_col() {
 					}
 				}
 			}
-		}
 	}
 	//boss collision
 	if (this->enemyBoss->getAlive()) {
