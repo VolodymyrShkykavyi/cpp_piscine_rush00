@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:49:39 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 13:41:11 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 14:35:58 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Player::Player(WINDOW *win, int y, int x, char c){
 	_immortal = false;
 	getmaxyx(curwin_, yMax_, xMax_);
 	keypad(curwin_, true);
-	player_ = "✈";
+	player_ = (char*)"👾";
 
     for (int i; i < 100; i++) {
         this->_shoots[i] = new Shoot(this->curwin_, this->yLoc_, this->xLoc_, 1);
@@ -113,14 +113,14 @@ int Player::getmv(int y, int x){
 
 void Player::display(){
 	if (this->getImmortal() == true){
-		wattron(curwin_, COLOR_PAIR(3));
-		mvwaddstr(curwin_, yLoc_, xLoc_, player_);
-		wattroff(curwin_, COLOR_PAIR(3));
+		// wattron(curwin_, COLOR_PAIR(3));
+		mvwaddstr(curwin_, yLoc_, xLoc_, "👻");
+		// wattroff(curwin_, COLOR_PAIR(3));
 	}
 	else{
-		wattron(curwin_, COLOR_PAIR(1));
+		// wattron(curwin_, A_BLINK);
 		mvwaddstr(curwin_, yLoc_, xLoc_, player_);
-		wattroff(curwin_, COLOR_PAIR(1));
+		// wattroff(curwin_, A_BLINK);
 	}
 }
 

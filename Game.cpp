@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2050/06/23 13:46:15 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 13:13:43 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 14:31:58 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void Game::check_col() {
         if (enemyAsteroid[j]->getAlive()) {
             for (int i = 0; i < 100; i++) {
                 if (playerShoots[i]->getAlive()) {
-                    if (playerShoots[i]->getX() >= enemyAsteroid[j]->getX() &&
+                    if (playerShoots[i]->getX() >= enemyAsteroid[j]->getX() - 1 &&
                         playerShoots[i]->getX() <= enemyAsteroid[j]->getX() + enemyAsteroid[j]->getSpeed() + 1 &&
                         playerShoots[i]->getY() == enemyAsteroid[j]->getY()) {
                         playerShoots[i]->setAlive(false);

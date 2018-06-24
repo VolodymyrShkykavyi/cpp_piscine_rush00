@@ -3,11 +3,12 @@
 
 # include "Enemy.hpp"
 # include <cstdlib>
+# include <string>
 
 class   EnemyAsteroid: public Enemy
 { 
 protected:
-	char _iconsArr[3];
+	char *_iconsArr[3];
 public:
     EnemyAsteroid(WINDOW *win);
     //EnemyAsteroid(WINDOW *win, int size);

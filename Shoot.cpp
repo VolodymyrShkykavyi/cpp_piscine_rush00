@@ -24,9 +24,9 @@ void Shoot::move()
 void    Shoot::display()
 {
     if (this->_alive){
-        wattron(this->_win, COLOR_PAIR(2));
-        mvwaddstr(this->_win, this->_yLoc, this->_xLoc, "➳");
-        wattroff(this->_win, COLOR_PAIR(2));
+        wattron(this->_win, COLOR_PAIR(1));
+        mvwaddstr(this->_win, this->_yLoc, this->_xLoc, "❃");
+        wattroff(this->_win, COLOR_PAIR(1));
     }
 }
 
