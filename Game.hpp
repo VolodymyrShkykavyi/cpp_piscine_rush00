@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:41:37 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 13:12:13 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 15:30:16 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "Player.hpp"
 # include "EnemyAsteroid.hpp"
 #include "Shoot.hpp"
+#include "EnemyShip.hpp"
 
 # define FPS 60
 
@@ -31,9 +32,9 @@ class Game
 	WINDOW * playwin;
 	Player *player;
 	EnemyAsteroid  *enemyAsteroid[50];
-	Enemy  *enemy[20];
+	EnemyShip  	*enemyShip[15];
 	Shoot		**playerShoots;
-	Shoot		**enemyShoots;
+	Shoot		*enemyShoots[50];
 	bool done;
 	clock_t t1;
 	clock_t t2;

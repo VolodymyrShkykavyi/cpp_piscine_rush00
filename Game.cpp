@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2050/06/23 13:46:15 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/24 14:31:58 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 15:41:35 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void Game::init() {
         printf("Your terminal does not support color\n");
         exit(1);
     }
-    // attron(COLOR_PAIR(1));
     getmaxyx(stdscr, this->yMax, this->xMax);
     if (this->yMax < 10) {
         std::cout << "Window too small, make it bigger!";
@@ -48,10 +47,16 @@ void Game::init() {
         exit(0);
     }
     this->playwin = newwin(0, 0, 0, 0);
-    // keypad(playwin, true);
     nodelay(playwin, true);
     player = new Player(playwin, 1, 1, '>');
     this->playerShoots = player->getShoots();
+    for (int i; i < 50; i++) {
+        this->enemyShoots[i] = new Shoot(this->playwin, 0, 0, -1);
+    }
+    for (int i; i < 15; i++){
+        this->enemyShip[i] = new EnemyShip(this->playwin);//, &this->enemyShoots[0]);
+        // this->enemyShip[i]->setAlive(true);
+    }
     for (int i = 0; i < 50; i++) {
         enemyAsteroid[i] = new EnemyAsteroid(this->playwin);
     }
@@ -65,17 +70,21 @@ void Game::add_ass() {
             if (enemyAsteroid[i]->getAlive() == false) {
                 enemyAsteroid[i]->setStartPos();
                 enemyAsteroid[i]->setAlive(true);
-                return ;
+                // this->enemyShip[0]->move();
+                break ;
             }
         }
     }
+    // for (int i = 0; i < 15; i++)
+    // {
+    //     if (this->time % 100 == 0){
+        
+    //             break ;
+    //     }
+    // }
 }
 
 void Game::check_col() {
-	// if (player->getImmortal() == true)
- //    {
- //       	mvwprintw(playwin, 1, 10, "immortal");
- //  
 	static int immortal_time = 0;
 	if (immortal_time > 0)
 		immortal_time--;
@@ -120,6 +129,15 @@ void Game::check_col() {
 
 void Game::moveall() {
     for (int i = 0; i < 100; i++) {
+        if (i < 1)
+        {
+            // if (enemyShip[i]->getAlive() == true) {
+                // enemyShip[i]->move();
+                // enemyShip[i]->display();
+            // }
+            // if (enemyShip[i]->getX() < 1)
+            //     enemyShip[i]->setStartPos();
+        }
         if (i < 50) {
             if (enemyAsteroid[i]->getAlive() == true) {
                 enemyAsteroid[i]->move();

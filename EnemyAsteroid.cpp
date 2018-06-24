@@ -1,5 +1,7 @@
 #include "EnemyAsteroid.hpp"
 
+EnemyAsteroid::EnemyAsteroid(){}
+
 EnemyAsteroid::EnemyAsteroid(WINDOW *win)
 {
     this->_win = win;

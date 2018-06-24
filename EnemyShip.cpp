@@ -1,0 +1,45 @@
+#include "EnemyShip.hpp"
+#include <iostream>
+
+EnemyShip::EnemyShip(){}
+
+EnemyShip::EnemyShip(EnemyShip const &src){
+	*this = src;
+}
+
+EnemyShip::EnemyShip(WINDOW *win){// Shoot **shoot){
+	this->_win = win;
+    this->_size = 1;
+    this->_speed = 0.1;
+    this->_icon = "🐉";
+    this->_alive = false;
+    this->setStartPos();
+    // this->_shoots = shoot;
+}
+
+void EnemyShip::setStartPos()
+{
+    int maxX = 0;
+    int maxY = 0;
+
+    getmaxyx(this->_win, maxY, maxX);
+    maxY -= 1;
+    this->_xLoc = maxX - 1;
+    this->_yLoc = rand() % (maxY - 2) + 1;
+    this->_yLoc += 1;
+}
+
+void EnemyShip::shoot(){
+	if (this->getAlive() == true)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			if (this->_shoots[i]->getAlive() == false) {
+            	this->_shoots[i]->setAlive(true);
+            	this->_shoots[i]->setX(this->_xLoc);
+            	this->_shoots[i]->setY(this->_yLoc);
+            	break;
+        	}
+		}
+	}
+}
