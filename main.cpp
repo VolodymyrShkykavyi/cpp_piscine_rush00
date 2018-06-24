@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 21:19:13 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 15:11:50 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 13:26:04 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 #include <ctime>
 #include "Game.hpp"
 #include "Player.hpp"
+#include <locale.h>
 
 int	main(){
 	Game g;
+	setlocale(LC_ALL, "");
 	g.start();
 	return 0;
 }

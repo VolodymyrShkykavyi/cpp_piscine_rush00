@@ -12,6 +12,7 @@ protected:
     char    _icon;
     WINDOW * _win;
     bool 	_alive;
+    int		_pointCost;
 public:
 	Enemy();
 	~Enemy();

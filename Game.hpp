@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:41:37 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/23 21:36:25 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/24 13:12:13 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ class Game
 	WINDOW * playwin;
 	Player *player;
 	EnemyAsteroid  *enemyAsteroid[50];
+	Enemy  *enemy[20];
 	Shoot		**playerShoots;
+	Shoot		**enemyShoots;
 	bool done;
 	clock_t t1;
 	clock_t t2;

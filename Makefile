@@ -5,7 +5,7 @@ OBJ = *.cpp
 OBJ_DIR = objects
 CC = clang++
 FLAGS = #-Wall -Werror -Wextra
-INCLUDES = -lncurses
+INCLUDES = -lncurses $(ncursesw5-config --cflags --libs)
 
 all: $(NAME)
 $(NAME): #$(OBJ_DIR) $(OBJ)
